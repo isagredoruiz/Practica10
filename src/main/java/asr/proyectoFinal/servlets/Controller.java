@@ -1,5 +1,6 @@
 package asr.proyectoFinal.servlets;
 
+import asr.proyectoFinal.dao.Traductor;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,7 +61,9 @@ public class Controller extends HttpServlet {
 					}
 					else
 					{
-						palabra.setName(parametro);
+						//traduccion parametro
+						String traduccion = Traductor.translate(parametro, "es", "en", false);
+						palabra.setName(traduccion);
 						store.persist(palabra);
 					    out.println(String.format("Almacenada la palabra: %s", palabra.getName()));			    	  
 					}
